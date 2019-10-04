@@ -1,10 +1,6 @@
 import { Reducer } from 'redux';
-import { AlertActions, AlertActionTypes } from 'Core/store/actions/alert.actions';
-
-export interface AlertState {
-    type: string;
-    message: string;
-};
+import { AlertActions } from 'Core/store/actions/alert.actions';
+import { AlertState, AlertActionTypes } from 'Core/store/types/alert.types';
 
 export const initialState: AlertState = {
     type: '',

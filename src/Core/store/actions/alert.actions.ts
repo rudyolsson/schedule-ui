@@ -1,28 +1,10 @@
-import { Action, ActionCreator } from 'redux';
-
-export enum AlertActionTypes {
-    SUCCESS = 'ALERT_SUCCESS',
-    ERROR = 'ALERT_ERROR',
-    CLEAR = 'ALERT_CLEAR',
-};
-
-export interface AlertSuccess extends Action {
-    type: AlertActionTypes.SUCCESS,
-    payload: {
-        message: string,
-    } 
-}
-
-export interface AlertError extends Action {
-    type: AlertActionTypes.ERROR,
-    payload: {
-        message: string,
-    } 
-}
-
-export interface AlertClear extends Action {
-    type: AlertActionTypes.CLEAR
-}
+import { ActionCreator } from 'redux';
+import {
+    AlertActionTypes,
+    AlertSuccess,
+    AlertError,
+    AlertClear,
+} from 'Core/store/types/alert.types';
 
 export const alertSuccess: ActionCreator<AlertSuccess> = (message: string) => ({
     type: AlertActionTypes.SUCCESS,
@@ -39,6 +21,6 @@ export const alertClear: ActionCreator<AlertClear> = () => ({
 });
 
 export type AlertActions = 
- AlertSuccess
-| AlertError
-| AlertClear;
+|AlertSuccess
+|AlertError
+|AlertClear;
