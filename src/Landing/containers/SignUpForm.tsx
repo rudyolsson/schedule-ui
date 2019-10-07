@@ -6,8 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import { Field, reduxForm } from 'redux-form';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const validate = (values: any) => {
     const errors: any = {}
@@ -49,10 +49,9 @@ const renderTextField = ({
             />
 );
 
-
 const useStyles = makeStyles((theme: Theme) => ({
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100% !important', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -60,13 +59,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-
 export const SignUpForm = (props: any) => {
   const { handleSubmit, pristine, submitting } = props
   const classes = useStyles();
 
   return (
-      <div>
+    <Grid className={classes.form}>
         <Typography component="h1" variant="h5">
                 Sign Up
         </Typography>
@@ -102,13 +100,13 @@ export const SignUpForm = (props: any) => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Link href="#" variant="body2">
+                <Button component={Link} to="/login">
                   {"Already have an account? Login"}
-                </Link>
+                </Button>
               </Grid>
             </Grid>
           </form>
-          </div>
+        </Grid>
   );
 }
 

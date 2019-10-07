@@ -9,7 +9,7 @@ const App: React.FC = () => {
       <div className="App">
         <Router history={history}>
           <Switch>
-             <Route exact path="/" component={LandingLayout}></Route> 
+             <Route path="/" component={LandingLayout}></Route> 
           </Switch>
         </Router>
       </div>

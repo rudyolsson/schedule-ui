@@ -6,8 +6,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import { Field, reduxForm } from 'redux-form';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+// import * as MatLink from '@material-ui/core/Button';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const validate = (values: any) => {
     const errors: any = {}
@@ -95,9 +96,9 @@ export const LoginForm = (props: any) => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Link href="#" variant="body2">
+                <Button component={Link} to="/signup">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </Button>
               </Grid>
             </Grid>
             </form>
