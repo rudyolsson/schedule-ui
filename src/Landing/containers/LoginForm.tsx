@@ -6,7 +6,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 import { Field, reduxForm } from 'redux-form';
 import Grid from '@material-ui/core/Grid';
-// import * as MatLink from '@material-ui/core/Button';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
@@ -59,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const LoginForm = (props: any) => {
+const LoginForm = (props: any) => {
   const { handleSubmit, pristine, submitting } = props
   const classes = useStyles();
   return (
@@ -106,12 +105,9 @@ export const LoginForm = (props: any) => {
   );
 }
 
-export const help = (vals: any) => {
-    console.log(vals);
-}
+
 
 export default reduxForm({
     form: 'Login Form',
     validate,
-    onSubmit: help,
 })(LoginForm);

@@ -110,12 +110,7 @@ export const SignUpForm = (props: any) => {
   );
 }
 
-export const help = (vals: any) => {
-    console.log(vals);
-}
-
 export default reduxForm({
     form: 'Sign Up Form',
     validate,
-    onSubmit: help,
 })(SignUpForm);

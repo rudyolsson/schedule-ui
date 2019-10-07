@@ -12,6 +12,8 @@ import Clock from 'images/desk.jpg';
 import LoginForm from 'Landing/containers/LoginForm';
 import SignUpForm from 'Landing/containers/SignUpForm';
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login, signUp } from 'Core/store/actions/auth.actions';
 
 function Copyright() {
   return (
@@ -55,7 +57,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-
 const LandingLayout = (props: any) => {
   const classes = useStyles();
   return (
@@ -71,8 +72,12 @@ const LandingLayout = (props: any) => {
             <LockOutlinedIcon />
             </Avatar>
             <Switch>
-                <Route path={'/login'} component={LoginForm} exact/>
-                <Route path={'/signup'} component={SignUpForm} exact/>
+                <Route path="/login">
+                    <LoginForm onSubmit={values => props.login(values)}/>
+                </Route>
+                <Route path="/signup">
+                    <SignUpForm onSubmit={values => props.signUp(values)}/>
+                </Route>
             </Switch>
             <Box mt={5}>
                 <Copyright />
@@ -83,4 +88,4 @@ const LandingLayout = (props: any) => {
   );
 }
 
-export default LandingLayout;
+export default connect(null, { login, signUp })(LandingLayout);
