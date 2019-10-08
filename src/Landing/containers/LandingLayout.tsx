@@ -14,8 +14,9 @@ import SignUpForm from 'Landing/containers/SignUpForm';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, signUp } from 'Core/store/actions/auth.actions';
+import { AuthenticationProfile, UserCredentials } from 'Core/store/types/auth.types';
 
-function Copyright() {
+const  Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
@@ -48,13 +49,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
   },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
 }));
 
 const LandingLayout = (props: any) => {
@@ -86,6 +80,12 @@ const LandingLayout = (props: any) => {
         </Grid>
     </Grid>
   );
+}
+
+export interface LandingLayoutProps {
+    login: (values: UserCredentials) => AuthenticationProfile;
+    signUp: (values: UserCredentials) => AuthenticationProfile;
+    classes: any;
 }
 
 export default connect(null, { login, signUp })(LandingLayout);

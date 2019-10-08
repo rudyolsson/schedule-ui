@@ -1,4 +1,4 @@
-import { ActionCreator } from "redux";
+import { ActionCreator, Dispatch } from 'redux';
 import {
   AuthActionTypes,
   SignUp,
@@ -12,7 +12,9 @@ import {
   ForgotPassword,
   AuthClear,
   Logout
-} from "Core/store/types/auth.types";
+} from 'Core/store/types/auth.types';
+import { ThunkAction } from 'redux-thunk';
+import { instance } from 'Utils/axios.instance';
 
 export const signUp: ActionCreator<SignUp> = (
   credentials: UserCredentials
@@ -33,10 +35,17 @@ export const signUpError: ActionCreator<SignUpError> = (message: string) => ({
   payload: { message }
 });
 
-export const login: ActionCreator<Login> = (credentials: UserCredentials) => ({
-  type: AuthActionTypes.LOGIN,
-  payload: { credentials }
-});
+export const login: ActionCreator<any> = (
+  credentials: UserCredentials
+) => async (dispatch: Dispatch) => {
+  dispatch({ type: AuthActionTypes.LOGIN });
+  try {
+    const response = await instance().post('/auth/token', credentials);
+    dispatch(loginSuccess(response.data));
+  } catch (e) {
+    dispatch(loginError(e.response.data.message));
+  }
+};
 
 export const loginSuccess: ActionCreator<LoginSuccess> = (
   profile: AuthenticationProfile

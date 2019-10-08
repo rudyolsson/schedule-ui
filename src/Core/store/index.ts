@@ -5,15 +5,14 @@ import { authReducer } from 'Core/store/reducers/auth.reducer';
 import { AlertState } from 'Core/store/types/alert.types';
 import { AuthState } from 'Core/store/types/auth.types';
 
-
 export interface AppState {
-    form: FormState,
-    alert: AlertState,
-    auth: AuthState,
+  form: FormState;
+  alert: AlertState;
+  auth: AuthState;
 }
 
 export default combineReducers({
-    form: formReducer,
-    alert: alertReducer,
-    auth: authReducer,
+  form: formReducer,
+  alert: alertReducer,
+  auth: authReducer
 });
