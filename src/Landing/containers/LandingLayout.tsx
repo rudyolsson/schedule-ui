@@ -15,6 +15,8 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, signUp } from 'Core/store/actions/auth.actions';
 import { AuthenticationProfile, UserCredentials } from 'Core/store/types/auth.types';
+import { AppState } from 'Core/store';
+import SnackBarComponent from 'Core/components/Snackbar';
 
 const  Copyright = () => {
   return (
@@ -78,6 +80,7 @@ const LandingLayout = (props: any) => {
             </Box>
         </div>
         </Grid>
+      {props.authError && props.alert.open ? <SnackBarComponent type={props.alert.type} message={props.alert.message} open={props.alert.open}/> : ''}
     </Grid>
   );
 }
@@ -88,4 +91,11 @@ export interface LandingLayoutProps {
     classes: any;
 }
 
-export default connect(null, { login, signUp })(LandingLayout);
+const mapStateToProps = (state: AppState)  => {
+  return {
+    alert: state.alert,
+    authError: state.auth.error,
+  }
+};
+
+export default connect(mapStateToProps, { login, signUp })(LandingLayout);

@@ -3,8 +3,9 @@ import { AlertActions } from 'Core/store/actions/alert.actions';
 import { AlertState, AlertActionTypes } from 'Core/store/types/alert.types';
 
 export const initialState: AlertState = {
-  type: '',
-  message: ''
+  type: 'info',
+  message: '',
+  open: false
 };
 
 export const alertReducer: Reducer<any> = (
@@ -15,20 +16,22 @@ export const alertReducer: Reducer<any> = (
     case AlertActionTypes.SUCCESS:
       return {
         ...state,
-        type: 'alert-success',
-        message: action.message
+        type: 'success',
+        message: action.payload.message,
+        open: true
       };
     case AlertActionTypes.ERROR:
       return {
         ...state,
-        type: 'alert-danger',
-        message: action.message
+        type: 'error',
+        message: action.payload.message,
+        open: true
       };
     case AlertActionTypes.CLEAR:
       return {
         ...state,
-        type: '',
-        message: ''
+        message: '',
+        open: false
       };
     default:
       return state;

@@ -49,7 +49,7 @@ export const authReducer: Reducer<any> = (
     case AuthActionTypes.LOGIN_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.message,
         authenticated: false,
         loading: false
       };

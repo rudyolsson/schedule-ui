@@ -1,16 +1,17 @@
 import { Action } from 'redux';
-
+import { variantIcon } from 'Core/components/Snackbar';
 // State Shape
 export interface AlertState {
-  type: string;
-  message: string;
+  type: keyof typeof variantIcon;
+  message: any;
+  open: boolean;
 }
 
 // Action Types
 export enum AlertActionTypes {
-  SUCCESS = 'ALERT_SUCCESS',
-  ERROR = 'ALERT_ERROR',
-  CLEAR = 'ALERT_CLEAR'
+  SUCCESS = 'alert/SUCCESS',
+  ERROR = 'alert/ERROR',
+  CLEAR = 'alert/CLEAR'
 }
 
 // Actions
