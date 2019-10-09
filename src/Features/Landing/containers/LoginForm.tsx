@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const LoginForm = (props: any) => {
+const LoginForm = (props: InjectedFormProps) => {
   const { handleSubmit, pristine, submitting } = props
   const classes = useStyles();
   return (
@@ -95,8 +95,8 @@ const LoginForm = (props: any) => {
                 </Link>
               </Grid> */}
               <Grid item>
-                <Button component={Link} to="/signup">
-                  {"Don't have an account? Sign Up"}
+                <Button component={Link} to="/register">
+                  {"Register Your Business And Start Using UpShift"}
                 </Button>
               </Grid>
             </Grid>

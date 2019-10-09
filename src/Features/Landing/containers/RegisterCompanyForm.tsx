@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 const validate = (values: any) => {
     const errors: any = {}
     const requiredFields = [
+      'companyName',
       'email',
       'password',
       'confirmPassword'
@@ -57,26 +58,38 @@ const useStyles = makeStyles((theme: Theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  h2: {
+    margin: theme.spacing(1.5, 0, 0),
+  },
 }));
 
-export const SignUpForm = (props: any) => {
+export const RegisterCompanyForm = (props: any) => {
   const { handleSubmit, pristine, submitting } = props
   const classes = useStyles();
 
   return (
     <Grid className={classes.form}>
         <Typography component="h1" variant="h5">
-                Sign Up
+          Register Your Company
         </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
+              <Typography className={classes.h2} component="h4" variant="h6">
+                  Company
+              </Typography> 
               <div>
-                <Field name="email" id="email" label="email" component={renderTextField} autoFocus/>
+                <Field name="companyName" id="companyName" label="Company Name" component={renderTextField} autoFocus/>
+              </div>
+              <Typography className={classes.h2} component="h4" variant="h6">
+                  Contact
+              </Typography> 
+              <div>
+                <Field name="email" id="email" label="Email" component={renderTextField} />
               </div>
               <div>
-                  <Field name="password" id="password" label="password" component={renderTextField}/>
+                  <Field name="password" id="password" label="Password" component={renderTextField}/>
               </div>
               <div>
-                  <Field name="confirmPassword" id="confirmPassword" label="confirm password" component={renderTextField}/>
+                  <Field name="confirmPassword" id="confirmPassword" label="Confirm Password" component={renderTextField}/>
               </div>
         
             <FormControlLabel
@@ -91,7 +104,7 @@ export const SignUpForm = (props: any) => {
               className={classes.submit}
               disabled={pristine || submitting}
             >
-              Sign Up
+              Register
             </Button>
             <Grid container>
               {/* <Grid item xs>
@@ -111,6 +124,6 @@ export const SignUpForm = (props: any) => {
 }
 
 export default reduxForm({
-    form: 'Sign Up Form',
+    form: 'Register Company Form',
     validate,
-})(SignUpForm);
+})(RegisterCompanyForm);

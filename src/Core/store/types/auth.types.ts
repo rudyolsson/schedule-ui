@@ -25,7 +25,7 @@ export enum AuthActionTypes {
 export interface SignUp extends Action {
   type: AuthActionTypes.SIGNUP;
   payload: {
-    credentials: UserCredentials;
+    credentials: RegisterBusinessCredentials;
   };
 }
 
@@ -84,6 +84,10 @@ export interface UserCredentials {
   userName: string;
   password: string;
   confirmPassword?: string;
+}
+
+export interface RegisterBusinessCredentials extends UserCredentials {
+  companyName: string;
 }
 
 export interface AuthenticationProfile {

@@ -9,8 +9,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Clock from 'images/desk.jpg';
-import LoginForm from 'Landing/containers/LoginForm';
-import SignUpForm from 'Landing/containers/SignUpForm';
+import LoginForm from 'Features/Landing/containers/LoginForm';
+import RegisterCompanyForm from 'Features/Landing/containers/RegisterCompanyForm';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login, signUp } from 'Core/store/actions/auth.actions';
@@ -68,11 +68,11 @@ const LandingLayout = (props: any) => {
             <LockOutlinedIcon />
             </Avatar>
             <Switch>
-                <Route path="/login">
+                <Route path="/login" exact>
                     <LoginForm onSubmit={values => props.login(values)}/>
                 </Route>
-                <Route path="/signup">
-                    <SignUpForm onSubmit={values => props.signUp(values)}/>
+                <Route path="/register" exact>
+                    <RegisterCompanyForm onSubmit={values => props.signUp(values)}/>
                 </Route>
             </Switch>
             <Box mt={5}>
