@@ -15,9 +15,12 @@ import {
   RegisterBusinessCredentials
 } from 'Core/store/types/auth.types';
 import { instance } from 'Utils/axios.instance';
-import { AlertActionTypes } from 'Core/store/types/alert.types';
 import { alertError } from 'Core/store/actions/alert.actions';
-import { setStorageItem } from 'Utils/jwt-helper.service';
+import {
+  setStorageItem,
+  isLoggedIn,
+  getStorageItem
+} from 'Utils/jwt-helper.service';
 import history from '../../../history';
 
 export const signUp: ActionCreator<any> = (
@@ -73,7 +76,7 @@ export const loginSuccess: ActionCreator<any> = (
 ) => async (dispatch: Dispatch, getState: any) => {
   dispatch({
     type: AuthActionTypes.LOGIN_SUCCESS,
-    payload: { profile }
+    payload: profile
   });
   const token = getState().auth.user;
   setStorageItem('token', token);
@@ -106,6 +109,20 @@ export const forgotPassword: ActionCreator<ForgotPassword> = (
   type: AuthActionTypes.FORGOT,
   payload: { email }
 });
+
+export const checkToken: ActionCreator<any> = () => async (
+  dispatch: Dispatch,
+  getState: any
+) => {
+  const storedToken = isLoggedIn();
+  const decoded = getStorageItem('token');
+  if (storedToken) {
+    dispatch({
+      type: AuthActionTypes.LOGIN_SUCCESS,
+      payload: decoded
+    });
+  }
+};
 
 export type AuthActions =
   | SignUp

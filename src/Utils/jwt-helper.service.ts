@@ -10,7 +10,7 @@ export function getStorageItem(key: string) {
 }
 
 export function setStorageItem(key: string, data: any) {
-  return localStorage.setItem(key, data);
+  return localStorage.setItem(key, JSON.stringify(data));
 }
 
 export function deleteItem(key: string) {
@@ -23,7 +23,7 @@ export function getToken(token: any) {
 
 export function isTokenExpired(token: any) {
   try {
-    const decoded: any = decode(token);
+    const decoded: any = decode(token.accessToken);
     if (decoded.exp < Date.now() / 1000) {
       return true;
     } else return false;
