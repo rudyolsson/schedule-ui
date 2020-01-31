@@ -9,13 +9,23 @@ import { connect } from 'react-redux';
 import { AppState } from 'Core/store';
 import { checkToken } from 'Core/store/actions/auth.actions';
 
-const App: React.FC = (props: any) => {
+import { AppProvider, ContextProps } from './context';
+
+export const App: React.FC = (props: any) => {
+
+  const ctx: ContextProps = {
+    name: 'Ava',
+    cutest: true,
+    nickNames: ['bob', 'joe'],
+  }
+
   useEffect(() => {
     // checkLogIn
     props.checkToken();
   })
   return (
-      <div className="App">
+    <AppProvider value={ctx}>
+      <div className="App" data-testid="app-root">
         <Router history={history}>
           <Switch>
              {/* <PrivateRoute path="/dashboard" component={DashboardLayout} isAuthenticated={props.isAuthenticated}></PrivateRoute> */}
@@ -24,6 +34,7 @@ const App: React.FC = (props: any) => {
           </Switch>
         </Router>
       </div>
+      </AppProvider>
   );
 }
 

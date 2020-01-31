@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useContext }  from 'react'
+import AppContext from '../../../context';
 
 export default function Header() {
+    const context = useContext(AppContext);
+    const { name, cutest, nickNames } = context;
+    
     return (
         <>
             <header className="page-header">
